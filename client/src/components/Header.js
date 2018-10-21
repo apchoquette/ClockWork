@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 
 class Header extends Component {
     render() {
+
+        const navbarStyle = {
+            "box-shadow": "0 1px 2px lightgray",
+            "z-index": "102"
+        }
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light" style={navbarStyle}>
                 <a className="navbar-brand" href="#"><span className="oi oi-clock" title="oi-clock"></span></a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

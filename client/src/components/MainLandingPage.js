@@ -23,9 +23,7 @@ class MainLandingPage extends Component {
                         <p className="lead">A Simple Micro-Project Manager for Teams</p>
                     </div>
                     <hr className="my-4"></hr>
-                    <div className="container">
-                    <button className="btn btn-primary btn-large">Sign Up</button>
-                    </div>
+                    
                 </div>
                 
             </div>
