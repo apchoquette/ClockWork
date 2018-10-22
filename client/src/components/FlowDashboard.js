@@ -12,7 +12,7 @@ class FlowDashboard extends Component {
         }
 
         const navStyle = {
-            "box-shadow": "0 1px 2px lightgray"
+            boxShadow: "0 1px 2px lightgray"
         }
 
         console.log(props);

@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './App.css';
 import Header from './components/Header';
 import FlowDashboard from './components/FlowDashboard';
 import MainLandingPage from './components/MainLandingPage';
 import NewFlowForm from './components/NewFlowForm';
+import * as authActions from './redux/actions/auth';
 
 
 
 class App extends Component {
+
+  componentWillMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <div className="container-fluid">
@@ -25,4 +32,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null,authActions)(App);

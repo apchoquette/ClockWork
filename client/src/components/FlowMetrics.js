@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 const FlowMetrics = () => {
 
     const style = {
-        "margin": "10px 0 10px 0",
+        margin: "10px 0 10px 0",
         padding: "10px",
-        "box-shadow": "0px 1px 2px lightgray"
+        boxShadow: "0px 1px 2px lightgray"
     }
 
     return (

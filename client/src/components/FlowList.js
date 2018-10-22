@@ -15,7 +15,7 @@ class FlowList extends Component {
     render() {
 
         const containerStyle = {
-            "box-shadow": "0 1px 2px lightgray"
+            boxShadow: "0 1px 2px lightgray"
         }
 
         const newButtonStyle = {

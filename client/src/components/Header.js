@@ -1,12 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Header extends Component {
+    renderContent(props) {
+
+        switch(this.props.auth){
+            case null:
+                return <p /> 
+            case false:
+                return (<a className="btn btn-outline-success float-right" href='http://localhost:4000/api/auth/google' type="button">Sign In</a>)
+            default:
+           
+                return (
+                    <a className="btn btn-outline-danger float-right" href='http://localhost:4000/api/logout' type="button">Sign Out</a>
+                    )
+        }
+        
+    }
+
+    renderUser(props) {
+        return(
+            this.props.auth && <li className="nav-item"><p>Logged in as {this.props.auth.firstName}</p></li>
+        )
+    }
+    
     render() {
 
         const navbarStyle = {
-            "box-shadow": "0 1px 2px lightgray",
-            "z-index": "102"
+            boxShadow: "0 1px 2px lightgray",
+            zIndex: "102"
         }
+
+        
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top" style={navbarStyle}>
                 <a className="navbar-brand" href="#"><span className="oi oi-clock" title="oi-clock"></span></a>
@@ -21,18 +46,24 @@ class Header extends Component {
                         <li className="nav-item">
                             <a className="nav-link" href="#">About</a>
                         </li>
-                        
+                        {this.renderUser()}
                     </ul>
                     
                     
                     
                 </div>
                 <div>
-                    <button className="btn btn-outline-success float-right" type="button">Sign In</button>
+                    {this.renderContent()}
                 </div>
             </nav>
         )
     }
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(Header);
