@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import FlowList from './FlowList';
+import FlowList from './FlowList'; 
+import { Link } from 'react-router-dom'
 import FlowMetrics from './FlowMetrics';
+import Flows from './Flows';
 
 class FlowDashboard extends Component {
-    render() {
+    render(props) {
 
         const rowStyle = {
             height: "100vh"
@@ -13,21 +15,26 @@ class FlowDashboard extends Component {
             "box-shadow": "0 1px 2px lightgray"
         }
 
-        const flowStyle = {
-            padding: "10px"
+        console.log(props);
+
+        
+
+        const newButtonStyle = {
+            right: "75px",
+            bottom: "75px"
         }
         return (
             <div className="container row mh-100 mw-100" style={rowStyle}>
                 
                 <div className="col-2 mh-100 bg-light" style={navStyle}>
-                    <div className="container-fluid text-center h-100" style={flowStyle}>
-                        flows
-                    </div>
+                    <Flows />
+
                 </div>
                 <div className="col-10 text-center h-100">
                     <FlowMetrics />
                     <FlowList />
                 </div>
+                
                 
 
                 </div>

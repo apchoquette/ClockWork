@@ -4,6 +4,7 @@ const FlowMetrics = () => {
 
     const style = {
         "margin": "10px 0 10px 0",
+        padding: "10px",
         "box-shadow": "0px 1px 2px lightgray"
     }
 
@@ -11,24 +12,24 @@ const FlowMetrics = () => {
         <div className="container-fluid bg-light h-25" style={style}>
             <div className="row h-50">
                 <div className="col-4 text-center">
-                1
+                New Tasks
                 </div>
                 <div className="col-4">
-                2
+                Tasks In Progress
                 </div>
                 <div className="col-4">
-                3
+                Tasks Completed
                 </div>
             </div>
             <div className="row h-50">
                 <div className="col-4">
-                4
+                Average Time to Complete Task
                 </div>
                 <div className="col-4">
-                5
+                New Tasks Today
                 </div>
                 <div className="col-4">
-                6
+                Completed Tasks Today
                 </div>
             </div>
             

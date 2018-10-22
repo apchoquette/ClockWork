@@ -4,6 +4,8 @@ import './App.css';
 import Header from './components/Header';
 import FlowDashboard from './components/FlowDashboard';
 import MainLandingPage from './components/MainLandingPage';
+import NewFlowForm from './components/NewFlowForm';
+
 
 
 class App extends Component {
@@ -15,6 +17,7 @@ class App extends Component {
                 <Header />
                 <Route path='/' component={MainLandingPage} exact />
                 <Route path="/dashboard" component={FlowDashboard} />
+                <Route path="/newflow" component={NewFlowForm} />
             </div>
         </BrowserRouter>
       </div>

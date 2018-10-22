@@ -1,0 +1,22 @@
+{
+  "name": "clockwork-v2",
+  "version": "1.0.0",
+  "description": "A simple productivity app for managing microprojects.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "server": "cd server && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apchoquette/ClockWork.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/apchoquette/ClockWork/issues"
+  },
+  "homepage": "https://github.com/apchoquette/ClockWork#readme"
+}
