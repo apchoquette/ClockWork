@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
 import Header from './components/Header';
@@ -14,16 +14,27 @@ class App extends Component {
 
   componentWillMount() {
     this.props.fetchUser();
+    
   }
 
+
+
+
+
   render() {
+
+    
     return (
       <div className="container-fluid">
         <BrowserRouter>
             <div className="container-fluid mh-100">
                 <Header />
-                <Route path='/' component={MainLandingPage} exact />
-                <Route path="/dashboard" component={FlowDashboard} />
+                <Route path='/' exact 
+                render={() => (this.props.auth ? (<Redirect to="/dashboard"/>) :
+                (<MainLandingPage/>))} />
+                <Route path="/dashboard" exact
+                render={() => (this.props.auth ? <FlowDashboard /> : <Redirect to="/"/>)}
+                />
                 <Route path="/newflow" component={NewFlowForm} />
             </div>
         </BrowserRouter>
@@ -32,4 +43,10 @@ class App extends Component {
   }
 }
 
-export default connect(null,authActions)(App);
+const mapStateToProps = (state) => {
+  return {
+      auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps,authActions)(App);
