@@ -29,11 +29,16 @@ class App extends Component {
         <BrowserRouter>
             <div className="container-fluid mh-100">
                 <Header />
+                {/* Send authenticated users directly to dashboard */}
                 <Route path='/' exact 
-                render={() => (this.props.auth ? (<Redirect to="/dashboard"/>) :
-                (<MainLandingPage/>))} />
+                render={() => this.props.auth ? 
+                <Redirect to="/dashboard"/> :
+                <MainLandingPage/>} />
+                {/* Prevent unauthenticated users from accessing /dashboard */}
                 <Route path="/dashboard" exact
-                render={() => (this.props.auth ? <FlowDashboard /> : <Redirect to="/"/>)}
+                render={() => (this.props.auth ? 
+                <FlowDashboard /> : 
+                <Redirect to="/"/>)}
                 />
                 <Route path="/newflow" component={NewFlowForm} />
             </div>

@@ -25,7 +25,7 @@ class FlowList extends Component {
         return (
             <div className="container-fluid h-75 bg-light position-relative" style={containerStyle}>
                 FlowList
-                <button className="btn btn-lg btn-primary position-fixed" style={newButtonStyle}>+</button>
+                <button className="btn btn-lg btn-primary position-fixed" style={newButtonStyle}><Link to="/newflow">+</Link></button>
                 </div>
         )
     }
