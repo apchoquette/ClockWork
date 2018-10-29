@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const PORT = 4000;
 mongoose.connect(keys.mongoURI);
 require('./models/User');
+require('./models/Flow');
 require('./services/passport');
 
 const cookieDurationDays = 30;
@@ -36,10 +37,11 @@ app.get('/', (req,res) => {
 })
 
 app.get('/api/test', (req,res) => {
-    res.send({server: "Server is online!"})
+    res.send({server: "Connection Successful"})
 })
 
 require('./routes/authRoutes')(app);
+require('./routes/flowRoutes')(app);
 
 
 

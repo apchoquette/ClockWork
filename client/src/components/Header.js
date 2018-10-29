@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
     renderContent(props) {
@@ -20,7 +21,7 @@ class Header extends Component {
 
     renderUser(props) {
         return(
-            this.props.auth && <li className="nav-item"><p>Logged in as {this.props.auth.firstName}</p></li>
+            this.props.auth && <small>Welcome, {this.props.auth.firstName}</small>
         )
     }
     
@@ -41,19 +42,21 @@ class Header extends Component {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                            <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                        <Link to='/dashboard'><a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a></Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">About</a>
                         </li>
-                        {this.renderUser()}
+                        
                     </ul>
                     
                     
                     
                 </div>
-                <div>
+                <div className="nav-item">
+                
                     {this.renderContent()}
+                    {this.renderUser()}
                 </div>
             </nav>
         )

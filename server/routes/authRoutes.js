@@ -8,11 +8,11 @@ module.exports = (app) => {
 
 
     app.get('/api/auth/google/callback', 
-    passport.authenticate('google'),(req,res)=> {
+    passport.authenticate('google'),(req,res) => {
         res.redirect('http://localhost:3000/dashboard');
     });
 
-    app.get('/api/logout', (req, res)=> {
+    app.get('/api/logout', (req, res) => {
         
         req.logout();
         res.redirect('http://localhost:3000/')
