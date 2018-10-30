@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import FlowList from './FlowList'; 
 import FlowMetrics from './FlowMetrics';
 import Flows from './Flows';
 import { connect } from 'react-redux';
+import * as flowActions from '../redux/actions/flow';
 
 class FlowDashboard extends Component {
+    
+    componentWillMount(props){
+        this.props.fetchFlows()
+    }
+    
     render(props) {
 
         const rowStyle = {
@@ -38,4 +45,6 @@ class FlowDashboard extends Component {
 }
 
 
-export default connect()(FlowDashboard);
+
+
+export default connect(null,flowActions)(FlowDashboard);

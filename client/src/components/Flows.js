@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Flows = () => {
+
+const Flows = (props) => {
+
+    console.log(props)
 
     const flowStyle = {
         padding: "10px"
@@ -12,10 +16,19 @@ const Flows = () => {
     }
     return (
         <div className="container-fluid text-center h-100" style={flowStyle}>
-            Flows
+            <ul className="list-group">
+                {props.flow.map((flow) => {return <li key={flow.name} className="list-group-item">{flow.name}</li>})}
+            </ul>
             <Link to="/newflow"  style={newButtonStyle}><button className="btn btn-lg btn-success position-fixed">+</button></Link>
         </div>
     )
 }
 
-export default Flows;
+const mapStateToProps = (state) => {
+    
+    return {
+        flow: state.flow
+    }
+}
+
+export default connect(mapStateToProps)(Flows);

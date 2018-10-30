@@ -8,7 +8,7 @@ module.exports = (app) => {
     //returns all flows created by the current user
     app.get('/api/flows',userLoggedIn,async (req,res) => {
         const flows = await Flow.find({
-            _id: req.user.id
+            _user: req.user.id
         })
 
         res.send(flows);
