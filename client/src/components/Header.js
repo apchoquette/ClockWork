@@ -20,8 +20,10 @@ class Header extends Component {
     }
 
     renderUser(props) {
+        
         return(
             this.props.auth && <small>Welcome, {this.props.auth.firstName}</small>
+            
         )
     }
     
@@ -35,17 +37,17 @@ class Header extends Component {
         
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top" style={navbarStyle}>
-                <a className="navbar-brand" href="#"><span className="oi oi-clock" title="oi-clock"></span></a>
+                <Link className="navbar-brand" to='/dashboard'><span className="oi oi-clock" title="oi-clock"></span></Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                        <Link to='/dashboard'><a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a></Link>
+                        <Link to='/dashboard'>Home</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">About</a>
+                            <Link className="nav-link" to="/about">About</Link>
                         </li>
                         
                     </ul>
@@ -66,6 +68,7 @@ class Header extends Component {
 const mapStateToProps = (state) => {
     return {
         auth: state.auth
+        
     }
 }
 

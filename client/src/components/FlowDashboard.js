@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import FlowList from './FlowList'; 
-import { Link } from 'react-router-dom'
 import FlowMetrics from './FlowMetrics';
 import Flows from './Flows';
+import { connect } from 'react-redux';
 
 class FlowDashboard extends Component {
     render(props) {
@@ -15,14 +15,9 @@ class FlowDashboard extends Component {
             boxShadow: "0 1px 2px lightgray"
         }
 
-        console.log(props);
-
         
 
-        const newButtonStyle = {
-            right: "75px",
-            bottom: "75px"
-        }
+        
         return (
             <div className="container row mh-100 mw-100" style={rowStyle}>
                 
@@ -42,4 +37,5 @@ class FlowDashboard extends Component {
     }
 }
 
-export default FlowDashboard;
+
+export default connect()(FlowDashboard);
