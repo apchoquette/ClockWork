@@ -17,18 +17,10 @@ const NewFlowFormPage = ({ form, createFlow }) => {
            departments,
            stages
         })
-        console.log('Name: ',name);
-        console.log('Departments: ', departments);
-        console.log('Stages: ', stages);
-        
-        
-        
     }
+    
     return (
-       
             <NewFlowForm onSubmit={submitHandler}/>
-
-       
     )
 
 }
