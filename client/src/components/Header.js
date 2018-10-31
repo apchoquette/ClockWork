@@ -37,7 +37,7 @@ class Header extends Component {
         
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top" style={navbarStyle}>
-                <Link className="navbar-brand" to='/dashboard'><span className="oi oi-clock" title="oi-clock"></span></Link>
+                <button className="navbar-brand" ><Link className="navbar-brand" to='/dashboard'></Link></button>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>

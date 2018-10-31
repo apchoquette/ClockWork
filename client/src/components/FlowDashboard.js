@@ -22,6 +22,10 @@ class FlowDashboard extends Component {
             boxShadow: "0 1px 2px lightgray"
         }
 
+        const mainStyle = {
+            margin: "10px 0px 10px 0px"
+        }
+
         
 
         
@@ -32,8 +36,8 @@ class FlowDashboard extends Component {
                     <Flows />
 
                 </div>
-                <div className="col-10 text-center h-100">
-                    <FlowMetrics />
+                <div className="col-10 text-center h-100 " style={mainStyle}>
+                    {/* <FlowMetrics /> */}
                     <FlowList />
                 </div>
                 

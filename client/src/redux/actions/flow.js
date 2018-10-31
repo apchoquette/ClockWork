@@ -12,3 +12,7 @@ export const createFlow = (values) => async dispatch => {
     console.log('creating flow', values)
     dispatch({type: 'FETCH_FLOWS', payload: res.data})
 }
+
+export const fetchFlowById = (id) => async dispatch => {
+    const res = await axios.get(`/api/flows/${id}`)
+}

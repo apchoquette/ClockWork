@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 const Flows = (props) => {
 
-    console.log(props)
+    
 
     const flowStyle = {
         padding: "10px"
@@ -15,9 +15,9 @@ const Flows = (props) => {
         bottom: "50px"
     }
     return (
-        <div className="container-fluid text-center h-100" style={flowStyle}>
+        <div className="container-fluid text-center h-100  sticky-top" style={flowStyle}>
             <ul className="list-group">
-                {props.flow.map((flow) => {return <li key={flow.name} className="list-group-item">{flow.name}</li>})}
+                {props.flow.map((flow) => {return <button key={flow.name} className="list-group-item list-group-item-action">{flow.name}</button>})}
             </ul>
             <Link to="/newflow"  style={newButtonStyle}><button className="btn btn-lg btn-success position-fixed">+</button></Link>
         </div>
