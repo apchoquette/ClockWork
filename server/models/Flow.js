@@ -10,4 +10,3 @@ const flowSchema = new Schema ({
 })
 
 mongoose.model('flows', flowSchema);
-console.log('Flow Schema Validated')

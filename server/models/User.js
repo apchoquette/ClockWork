@@ -7,4 +7,3 @@ const userSchema = new Schema ({
 })
 
 mongoose.model('users', userSchema);
-console.log('Mongo Schema created/validated')

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
-import Header from './components/Header';
+
 import FlowDashboard from './components/FlowDashboard';
+import Header from './components/Header';
 import MainLandingPage from './components/MainLandingPage';
 import NewFlowFormPage from './components/NewFlowFormPage';
 import * as authActions from './redux/actions/auth';
@@ -40,6 +41,7 @@ class App extends Component {
                 <FlowDashboard /> : 
                 <Redirect to="/"/>)}
                 />
+                <Route path="/flow/:id" exact component={FlowDashboard}/>
                 <Route path="/newflow" component={NewFlowFormPage} />
             </div>
         </BrowserRouter>

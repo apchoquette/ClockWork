@@ -10,10 +10,7 @@ import { Field, reduxForm } from 'redux-form'
         
         
         const renderDeptOptionsMultiSelect = ( { input,data,valueField,textField } ) => {
-
-            
-
-        
+    
             return (
                 <Multiselect {...input}
                 data={data}
@@ -24,12 +21,7 @@ import { Field, reduxForm } from 'redux-form'
                 />
 
             )
-                
-
-
-            
-                
-            
+         
         }
     
         const renderFlowOptionsMultiSelect = ( { input, data } ) => {
@@ -46,18 +38,6 @@ import { Field, reduxForm } from 'redux-form'
             
         }
 
-        
-            
-
-    
-    
-
-
-
-    
-        
-            
-    
 
     const NewFlowForm = (props) => {
 

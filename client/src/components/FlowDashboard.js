@@ -3,16 +3,14 @@ import axios from 'axios';
 import FlowList from './FlowList'; 
 import FlowMetrics from './FlowMetrics';
 import Flows from './Flows';
-import { connect } from 'react-redux';
-import * as flowActions from '../redux/actions/flow';
 
 class FlowDashboard extends Component {
+
     
-    componentWillMount(props){
-        this.props.fetchFlows()
-    }
     
-    render(props) {
+    
+    
+    render() {
 
         const rowStyle = {
             height: "100vh"
@@ -26,19 +24,22 @@ class FlowDashboard extends Component {
             margin: "10px 0px 10px 0px"
         }
 
+
+        
+
         
 
         
         return (
             <div className="container row mh-100 mw-100" style={rowStyle}>
                 
-                <div className="col-2 mh-100 bg-light" style={navStyle}>
+                <div className="col-2 mh-100 bg-white">
                     <Flows />
 
                 </div>
                 <div className="col-10 text-center h-100 " style={mainStyle}>
                     {/* <FlowMetrics /> */}
-                    <FlowList />
+                    <FlowList/>
                 </div>
                 
                 
@@ -51,4 +52,5 @@ class FlowDashboard extends Component {
 
 
 
-export default connect(null,flowActions)(FlowDashboard);
+
+export default FlowDashboard

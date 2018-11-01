@@ -37,7 +37,7 @@ app.get('/', (req,res) => {
 })
 
 app.get('/api/test', (req,res) => {
-    res.send({server: "Connection Successful"})
+    res.send({server: "Connected to Express Server"})
 })
 
 require('./routes/authRoutes')(app);

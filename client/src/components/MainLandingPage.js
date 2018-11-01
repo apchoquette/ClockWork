@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+
 class MainLandingPage extends Component {
 
     state = {
@@ -45,6 +46,7 @@ class MainLandingPage extends Component {
         
         return (
             <div className="container">
+                
                 <div className="jumbotron jumbotron-fluid" style={jumbotronStyle}>
                     <div className="container">
                         <h1 className="display-4">ClockWork</h1>

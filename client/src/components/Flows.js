@@ -1,27 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import * as flowActions from '../redux/actions/flow';
 
 
-const Flows = (props) => {
+
+class Flows extends Component {
+
+    componentWillMount(){
+        this.props.fetchFlows();
+        console.log(this.props.flow)
+    }
 
     
+    render() {
+        const flowStyle = {
+        
+            top: "100px",
+            position: "fixed", 
+            width: "200px"
+        }
+    
+        const leftContainerStyle = {
+            paddingTop: "10px"
+        }
+    
+        const newFlowButton = {
+            textDecoration: "none !important"
+        }
+        
+        return (
+            <div className="container-fluid text-center h-100" style={leftContainerStyle}>
+                <ul className="list-group" style={flowStyle}>
+                    <li className="list-group-item list-group-item-primary"><strong>Flow List</strong></li>
+                    {this.props.flow.map((flow) => {return <a href={`/flow/${flow._id}`}key={flow.name} className="list-group-item list-group-item-action">{flow.name}</a>})}
+                    <li className="list-group-item list-group-item-action" role="button" style={newFlowButton}><Link style={newFlowButton} to="/newflow">New Flow</Link></li>
+                </ul>
+                
+            </div>
+        )
 
-    const flowStyle = {
-        padding: "10px"
     }
-    const newButtonStyle = {
-        left: "225px",
-        bottom: "50px"
-    }
-    return (
-        <div className="container-fluid text-center h-100  sticky-top" style={flowStyle}>
-            <ul className="list-group">
-                {props.flow.map((flow) => {return <button key={flow.name} className="list-group-item list-group-item-action">{flow.name}</button>})}
-            </ul>
-            <Link to="/newflow"  style={newButtonStyle}><button className="btn btn-lg btn-success position-fixed">+</button></Link>
-        </div>
-    )
+    
 }
 
 const mapStateToProps = (state) => {
@@ -31,4 +51,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Flows);
+export default connect(mapStateToProps,flowActions)(Flows);
