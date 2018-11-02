@@ -6,7 +6,14 @@ const flowSchema = new Schema ({
     departments: [String],
     stages: [String],
     _user: { type: Schema.Types.ObjectId, ref: 'User' },
-    createdAt: Date
+    createdAt: Date,
+    task: [{ 
+        taskName: String,
+        description: String,
+        createdAt: Date,
+        completedAt: Date,
+        stage: String
+     }]
 })
 
 mongoose.model('flows', flowSchema);

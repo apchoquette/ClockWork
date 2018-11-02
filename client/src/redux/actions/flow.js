@@ -15,12 +15,12 @@ export const createFlow = (values) => async dispatch => {
 
 export const deleteFlow = (id) => async dispatch => {
     const res = await axios.delete(`/api/flows/${id}`)
-    dispatch({type: 'DELETE_FLOW', payload: res.data})
+    dispatch({type: 'FETCH_FLOWS', payload: res.data});
 }
 
 export const fetchFlowById = (id) => async dispatch => {
     const res = await axios.get(`/api/flows/${id}`)
-    console.log('Flow requested:',id)
+    
     dispatch({ type: 'FETCH_FLOW_BY_ID', payload: res.data})
     
 }

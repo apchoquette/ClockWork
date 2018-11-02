@@ -28,6 +28,34 @@ module.exports = (app) => {
         res.send(flow);
     })
 
+    app.put('/api/flows/:id', userLoggedIn, async (req,res) => {
+
+        const { id } = req.params 
+
+        
+
+    })
+
+    app.delete('/api/flows/:id', userLoggedIn, async (req,res) => {
+        const { id } = req.params
+
+        const flows = await Flow.deleteOne({
+            _id: id
+        }, async (err) => {
+            if(!err) {
+                const flows = await Flow.find({
+                    _user: req.user.id
+                })
+        
+                res.send(flows);
+            }else {
+                res.send({error: "Flow not removed."})
+            }
+        })
+
+
+    })
+
 
     app.post('/api/flows', userLoggedIn, async (req,res) => {
         const { name, departments, stages } = req.body;
