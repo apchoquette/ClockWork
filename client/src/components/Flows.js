@@ -11,9 +11,18 @@ class Flows extends Component {
         this.props.fetchFlows();
         
     }
+    deleteHandler(id) {
+        
+        this.props.deleteFlow(id);
+       
+        
+    }
 
     
     render() {
+
+        //styles
+
         const flowStyle = {
         
             top: "100px",
@@ -28,12 +37,21 @@ class Flows extends Component {
         const newFlowButton = {
             textDecoration: "none !important"
         }
+
+        const deleteButtonStyle = {
+            right: "20px",
+            top: "20px"
+        }
         
         return (
             <div className="container-fluid text-center h-100" style={leftContainerStyle}>
                 <ul className="list-group" style={flowStyle}>
                     <li className="list-group-item list-group-item-primary"><strong>Flow List</strong></li>
-                    {this.props.flow && this.props.flow.map((flow) => {return <a href={`/flow/${flow._id}`}key={flow.name} className="list-group-item list-group-item-action">{flow.name}</a>})}
+                    {this.props.flow && this.props.flow.map((flow) => {return(
+                         <div>
+                             <a href={`/flow/${flow._id}`}key={flow.name} className="list-group-item list-group-item-action">{flow.name}</a>
+                             <button type="button" style={deleteButtonStyle} class="btn btn-warning" onClick={()=>this.deleteHandler(flow._id)}>x</button>
+                            </div>)})}
                     <li className="list-group-item list-group-item-action" role="button" style={newFlowButton}><Link style={newFlowButton} to="/newflow">New Flow</Link></li>
                 </ul>
                 

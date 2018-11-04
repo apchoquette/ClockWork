@@ -11,7 +11,8 @@ const flowSchema = new Schema ({
         taskName: String,
         description: String,
         createdAt: Date,
-        completedAt: Date,
+        requiredBy: Date,
+        completedAt: {type: Date, default: null},
         stage: String
      }]
 })

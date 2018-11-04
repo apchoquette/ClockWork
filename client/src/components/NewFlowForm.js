@@ -44,8 +44,9 @@ import { Field, reduxForm } from 'redux-form'
     const containerStyle = {
         padding: '10px'
     }
-
+    //selectable departments
     const deptOptions = ['Warehouse', 'Customer Service','Sales','Procurement','Inventory Control'];
+    //optional flow stages
     const flowOptions = ['Not Started','Backlogged','Blocked','In Progress','Awaiting Response','Complete'];
     const { handleSubmit, reset } = props
 

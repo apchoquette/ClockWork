@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 
+import NewTaskForm from './NewTaskForm'
+import moment from 'moment';
+
 
 import * as flowActions from '../redux/actions/flow';
 
@@ -29,6 +32,25 @@ class FlowList extends Component {
                 this.setState({flowSelected: false})
             }
         }
+    
+    handleSubmit(props) {
+
+        
+
+        const { form,activeFlow,addTaskToFlow,history,match } = this.props
+
+
+        const taskObj = {
+            taskName: form.values.taskName,
+            description: form.values.description,
+            createdAt: Date.now(),
+            requiredBy: form.values.requiredBy,
+            stage: activeFlow.stages[0]
+        }
+
+        addTaskToFlow(match.params.id,taskObj);
+
+    }
 
     renderList(props) {
 
@@ -44,13 +66,18 @@ class FlowList extends Component {
             padding: "20px"
         }
 
+        
+
         return(
 
             <div className="row" style={rowStyle}>
+                
                 {this.state.flowSelected===true && this.props.activeFlow.stages
-                ? 
+                ?
+                 
                 this.props.activeFlow.stages.map((stage,i)=> {
-                    return (<div key={i} className="col-sm" style={stageStyle}>{stage}</div>)
+                    return (<div key={i} className="col-sm" style={stageStyle}>{stage}
+                    </div>)
                 }) 
                 :
                 <p></p>
@@ -61,10 +88,7 @@ class FlowList extends Component {
         
     }
 
-    deleteHandler(id) {
-        this.props.match.params && this.props.deleteFlow(id);
-        this.props.history.push('/dashboard');
-    }
+    
 
     render() {
 
@@ -77,24 +101,23 @@ class FlowList extends Component {
             bottom: "50px"
         }
 
-        const deleteButtonStyle = {
-            right: "20px",
-            top: "20px"
-        }
+        
         return (
             
             <div className="container-fluid h-100 bg-light position-relative" style={containerStyle}>
-                {this.state.flowSelected===true ? <h1>{this.props.activeFlow.name}</h1> : <p></p>}
+                {this.state.flowSelected===true ? (<h1>{this.props.activeFlow.name}</h1>) : <p></p>}
                 {this.renderList()}
-                <button type="button" style={deleteButtonStyle} class="btn btn-dark position-absolute" onClick={()=>this.deleteHandler(this.props.match.params.id)}>Delete Flow</button>
-                </div>
+                <NewTaskForm onSubmit={this.handleSubmit.bind(this)}/>
+                
+            </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        activeFlow: state.activeFlow
+        activeFlow: state.activeFlow,
+        form: state.form.task
     }
 }
 

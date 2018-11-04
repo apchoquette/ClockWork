@@ -24,3 +24,9 @@ export const fetchFlowById = (id) => async dispatch => {
     dispatch({ type: 'FETCH_FLOW_BY_ID', payload: res.data})
     
 }
+
+export const addTaskToFlow = (id,task) => async dispatch => {
+    const res = await axios.put(`/api/flows/${id}`, task)
+
+    dispatch({ type: 'FETCH_FLOW_BY_ID', payload: res.data })
+}
