@@ -7,7 +7,10 @@ const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const PORT = 4000;
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI,{
+    useNewUrlParser: true,
+    useFindAndModify: false
+});
 require('./models/User');
 require('./models/Flow');
 require('./services/passport');

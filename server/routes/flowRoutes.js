@@ -17,6 +17,7 @@ module.exports = (app) => {
         res.send(flows);
     })
 
+    //fetches flow based on URL id
     app.get('/api/flows/:id',userLoggedIn, async (req,res) => {
         
         const { id } = req.params;
@@ -28,13 +29,14 @@ module.exports = (app) => {
         res.send(flow);
     })
 
+
+    //creates a new task within the selected flow.
     app.put('/api/flows/:id', userLoggedIn, async (req,res) => {
 
 
         const { id } = req.params;
 
-        console.log('ID:', id);
-        console.log(req.body);
+       console.log(req.body)
 
         const { taskName, description, createdAt, requiredBy, completedAt, stage } = req.body;
 
@@ -52,7 +54,7 @@ module.exports = (app) => {
                 const flow = await Flow.findOne({
                     _id: id
                 })
-                console.log('task added')
+                
 
                 res.send(flow);
             }else {
@@ -63,12 +65,41 @@ module.exports = (app) => {
         }
     )
 
+    })
+    //updates the status of a task
+    app.put('/api/flows/:id/:taskId', userLoggedIn, async (req,res) => {
+
+
+        const { id,taskId } = req.params;
+
+
+
+        const { stage } = req.body;
+
         
 
+        const task = Flow.findOneAndUpdate({
+            "task._id": taskId
+        }, { '$set': { "task.$.stage": stage
+        }}, async (err) => {
+            if(!err){
+                
+                const flow = await Flow.findOne({
+                    _id: id
+                })
+                res.send(flow);
+                
+            }else {
+                
+                res.send(500,{ error: "Task Not Found"})
+            }
+        }
+    
+    )
     })
-
+    //deletes a flow
     app.delete('/api/flows/:id', userLoggedIn, async (req,res) => {
-        const { id } = req.params
+        const { id } = req.params;
 
         const flows = await Flow.deleteOne({
             _id: id
@@ -87,6 +118,30 @@ module.exports = (app) => {
 
     })
 
+    //deletes a task
+
+    app.delete('/api/flows/:id/:taskId', userLoggedIn, async (req,res) => {
+        const { id, taskId } = req.params;
+
+        const task = Flow.updateOne({
+            
+        },{'$pull': {"task": { "_id": taskId }
+        }}, async (err) => {
+            if(!err) {
+                const flows = await Flow.find({
+                    _user: req.user.id
+                })
+                console.log('success')
+                res.send(flows);
+            }else {
+                console.log(err)
+                
+            }
+        }
+        )
+
+    })
+
 
     app.post('/api/flows', userLoggedIn, async (req,res) => {
         const { name, departments, stages } = req.body;
@@ -102,6 +157,11 @@ module.exports = (app) => {
 
         try {
             flow.save();
+            const flows = await Flow.find({
+                _user: req.user.id
+            })
+    
+            res.send(flows);
             
         }
 
@@ -109,11 +169,7 @@ module.exports = (app) => {
             res.status(422).send(err);
         }
 
-        const flows = await Flow.find({
-            _user: req.user.id
-        })
-
-        res.send(flows);
+        
 
         
         

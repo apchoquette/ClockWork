@@ -9,11 +9,11 @@ import { withRouter } from 'react-router';
 
 const NewFlowFormPage = ({ form, createFlow,history }) => {
     
-    const submitHandler = () => {
+    const submitHandler = async () => {
         const { name, departments, stages } = form.values
         
         //creates a new flow in MongoDB database
-        createFlow({
+        await createFlow({
            name,
            departments,
            stages

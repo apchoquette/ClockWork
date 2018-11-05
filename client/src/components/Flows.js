@@ -49,8 +49,8 @@ class Flows extends Component {
                     <li className="list-group-item list-group-item-primary"><strong>Flow List</strong></li>
                     {this.props.flow && this.props.flow.map((flow) => {return(
                          <div>
-                             <a href={`/flow/${flow._id}`}key={flow.name} className="list-group-item list-group-item-action">{flow.name}</a>
-                             <button type="button" style={deleteButtonStyle} class="btn btn-warning" onClick={()=>this.deleteHandler(flow._id)}>x</button>
+                             <a href={`/flow/${flow._id}`}key={flow.name} className="list-group-item list-group-item-action">{flow.name}<button type="button" style={deleteButtonStyle} class="btn btn-outline-danger" onClick={()=>this.deleteHandler(flow._id)}><small>delete</small></button></a>
+                             
                             </div>)})}
                     <li className="list-group-item list-group-item-action" role="button" style={newFlowButton}><Link style={newFlowButton} to="/newflow">New Flow</Link></li>
                 </ul>

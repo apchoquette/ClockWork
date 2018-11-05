@@ -79,7 +79,8 @@ class FlowList extends Component {
         }
 
         const rowStyle = {
-            padding: "20px"
+            padding: "20px",
+            height: "100vh"
         }
 
         
@@ -92,8 +93,10 @@ class FlowList extends Component {
                 ?
                  
                 this.props.activeFlow.stages.map((stage,i)=> {
-                    return (<div key={i} className="col-sm" style={stageStyle}>{stage}<TaskList stage={stage}/>
-                    </div>)
+                    return (
+                        <div key={i} className="col-sm" style={stageStyle}>{stage}<TaskList id={this.props.match.params.id} index={i} openModal={this.openModal} stage={stage} />
+                    </div>
+                    )
                 }) 
                 :
                 <p></p>
@@ -114,7 +117,11 @@ class FlowList extends Component {
 
         const newButtonStyle = {
             right: "100px",
-            bottom: "50px"
+            bottom: "50px",
+            height: "50px",
+            width: "50px",
+            fontSize: "40px",
+            alignContent: "center"
         }
 
         const customStyles = {
@@ -128,8 +135,8 @@ class FlowList extends Component {
               right                 : 'auto',
               bottom                : 'auto',
               marginRight           : '-75%',
-              transform             : 'translate(-50%, -50%)',
-              background            : 'none'
+              transform             : 'translate(-50%, -50%)'
+              
             }
           }
 
@@ -147,11 +154,7 @@ class FlowList extends Component {
                 >
                     <NewTaskForm onSubmit={this.handleSubmit.bind(this)}/>
                 </Modal>
-                <button 
-                type="button" 
-                className="btn btn-primary position-fixed" 
-                style={newButtonStyle}
-                onClick={this.openModal}>+</button>
+                
                 
             </div>
         )

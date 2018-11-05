@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import axios from 'axios';
 import configureStore from './redux/store/configureStore';
 import { Provider } from 'react-redux';
+import { IconContext } from "react-icons";
 
 window.axios = axios;
 
@@ -16,13 +17,13 @@ const store = configureStore();
 
 const jsx = (
     <Provider store={store}>
-        <App />
+        <IconContext.Provider value={{ color: "black", className: "icons", style: { verticalAlign: 'middle' } }}>
+            <App />
+        </IconContext.Provider>
     </Provider>
 )
 
 ReactDOM.render(jsx, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
+
 serviceWorker.unregister();

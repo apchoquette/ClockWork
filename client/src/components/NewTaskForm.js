@@ -34,6 +34,10 @@ const NewTaskForm = (props) => {
         )
     }
 
+    const validation = () => {
+        
+    }
+
 
 
     return (
