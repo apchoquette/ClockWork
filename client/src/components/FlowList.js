@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { withRouter } from 'react-router';
+import TaskList from './TaskList'
 
 import NewTaskForm from './NewTaskForm'
 import moment from 'moment';
+import Modal from 'react-modal';
 
 
 import * as flowActions from '../redux/actions/flow';
@@ -15,8 +17,12 @@ class FlowList extends Component {
         super();
         this.state = {
             isLoading: true,
-            flowSelected: false 
+            flowSelected: false,
+            modalIsOpen: false
         }
+        this.openModal = this.openModal.bind(this);
+    
+        this.closeModal = this.closeModal.bind(this);
     }
     componentDidMount(props) {
 
@@ -32,6 +38,14 @@ class FlowList extends Component {
                 this.setState({flowSelected: false})
             }
         }
+    
+    openModal() {
+        this.setState({modalIsOpen: true})
+    }
+
+    closeModal() {
+        this.setState({modalIsOpen: false})
+    }
     
     handleSubmit(props) {
 
@@ -49,6 +63,8 @@ class FlowList extends Component {
         }
 
         addTaskToFlow(match.params.id,taskObj);
+
+        this.closeModal();
 
     }
 
@@ -76,7 +92,7 @@ class FlowList extends Component {
                 ?
                  
                 this.props.activeFlow.stages.map((stage,i)=> {
-                    return (<div key={i} className="col-sm" style={stageStyle}>{stage}
+                    return (<div key={i} className="col-sm" style={stageStyle}>{stage}<TaskList stage={stage}/>
                     </div>)
                 }) 
                 :
@@ -101,13 +117,41 @@ class FlowList extends Component {
             bottom: "50px"
         }
 
+        const customStyles = {
+            content : {
+                padding: "0px",
+                width: '50%',
+                borderRadius: "5px",
+                overflow: 'visible',
+              top                   : '50%',
+              left                  : '50%',
+              right                 : 'auto',
+              bottom                : 'auto',
+              marginRight           : '-75%',
+              transform             : 'translate(-50%, -50%)',
+              background            : 'none'
+            }
+          }
+
         
         return (
             
             <div className="container-fluid h-100 bg-light position-relative" style={containerStyle}>
                 {this.state.flowSelected===true ? (<h1>{this.props.activeFlow.name}</h1>) : <p></p>}
                 {this.renderList()}
-                <NewTaskForm onSubmit={this.handleSubmit.bind(this)}/>
+                <Modal
+                isOpen={this.state.modalIsOpen}
+                onRequestClose={this.closeModal}
+                contentLabel="New Task"
+                style={customStyles}
+                >
+                    <NewTaskForm onSubmit={this.handleSubmit.bind(this)}/>
+                </Modal>
+                <button 
+                type="button" 
+                className="btn btn-primary position-fixed" 
+                style={newButtonStyle}
+                onClick={this.openModal}>+</button>
                 
             </div>
         )
