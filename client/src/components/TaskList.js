@@ -53,11 +53,17 @@ const TaskList = (props) => {
                             <div className="card-body">
                             <small class="card-subtitle mb-2 text-muted">Requested {moment(task.createdAt).fromNow()}</small>
                                 <h5 className="card-title">{task.taskName}</h5>
-                                
-                                <button className="btn btn-success float-right" onClick={()=>props.changeFlowTaskStatus(props.id,task._id,incrementStage)}><FaArrowRight /></button>
+                                {/* increment button disabled when in last index position*/}
+                                {props.index!==props.flow.length-1 
+                                ? <button className="btn btn-success float-right" onClick={()=>props.changeFlowTaskStatus(props.id,task._id,incrementStage)}><FaArrowRight /></button>
+                                : <button className="btn btn-success float-right disabled"><FaArrowRight /></button>
+                                }
                                 <button className="btn btn-danger" onClick={()=>props.deleteFlowTask(props.id,task._id)}><FaBan /></button>
-                                <button className="btn btn-warning float-left" onClick={()=>props.changeFlowTaskStatus(props.id,task._id,decrementStage)}><FaArrowLeft /></button>
-                                
+                                {/* decrement button disabled when in first index position*/}
+                                {props.index!==0 
+                                ? <button className="btn btn-warning float-left" onClick={()=>props.changeFlowTaskStatus(props.id,task._id,decrementStage)}><FaArrowLeft /></button>
+                                : <button className="btn btn-warning float-left disabled" ><FaArrowLeft /></button>
+                                }
                             </div>        
                         </div>
                     </div>

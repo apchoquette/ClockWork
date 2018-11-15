@@ -128,11 +128,10 @@ module.exports = (app) => {
         },{'$pull': {"task": { "_id": taskId }
         }}, async (err) => {
             if(!err) {
-                const flows = await Flow.find({
-                    _user: req.user.id
+                const flow = await Flow.findOne({
+                    _id: id
                 })
-                console.log('success')
-                res.send(flows);
+                res.send(flow);
             }else {
                 console.log(err)
                 

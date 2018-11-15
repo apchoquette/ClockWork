@@ -46,6 +46,10 @@ class FlowList extends Component {
     closeModal() {
         this.setState({modalIsOpen: false})
     }
+
+    deleteHandler(id) {
+        this.props.deleteFlow(id);
+    }
     
     handleSubmit(props) {
 
@@ -144,7 +148,9 @@ class FlowList extends Component {
         return (
             
             <div className="container-fluid h-100 bg-light position-relative" style={containerStyle}>
+            <button type="button" class="btn btn-outline-danger float-right" onClick={()=>this.deleteHandler(this.props.activeFlow._id)}><small>delete flow</small></button>
                 {this.state.flowSelected===true ? (<h1>{this.props.activeFlow.name}</h1>) : <p></p>}
+                
                 {this.renderList()}
                 <Modal
                 isOpen={this.state.modalIsOpen}
