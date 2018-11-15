@@ -16,6 +16,10 @@ const TaskList = (props) => {
         margin: "5px"
     }
 
+    const dueDateStyle = {
+        paddingTop: "10px"
+    }
+
     const newTaskButtonStyle = {
         textDecoration: 'blue',
         cursor: 'pointer'
@@ -50,8 +54,10 @@ const TaskList = (props) => {
                 return (
                     <div key={task.id}>
                         <div className="card" style={cardStyle}>
+                            <h6 style={dueDateStyle} class="card-subtitle mb-2">Due {moment(task.requiredBy).fromNow()}</h6>
+                            
                             <div className="card-body">
-                            <small class="card-subtitle mb-2 text-muted">Requested {moment(task.createdAt).fromNow()}</small>
+                                <small class="card-subtitle mb-2 text-muted">Requested {moment(task.createdAt).fromNow()}</small>
                                 <h5 className="card-title">{task.taskName}</h5>
                                 {/* increment button disabled when in last index position*/}
                                 {props.index!==props.flow.length-1 

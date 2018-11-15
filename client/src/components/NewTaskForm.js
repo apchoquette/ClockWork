@@ -30,6 +30,7 @@ const NewTaskForm = (props) => {
             time={false}
             value={!value ? null : new Date(value)}
             
+            
             />
         )
     }
@@ -44,17 +45,7 @@ const NewTaskForm = (props) => {
 
         <div className="container-fluid" style={newTaskFormStyle}>
             <form onSubmit={props.handleSubmit}>
-                <div className="form-group">
-                    <label>Task Name</label>
-                    <Field
-                    className="form-control"
-                    name="taskName"
-                    component="input"
-                    type="text"
-                    placeholder="Task Name"
-                    autoComplete="false"
-                    />
-                </div>
+                
                 <div className="form-group">
                     <label>Description</label>
                     <Field
@@ -63,7 +54,7 @@ const NewTaskForm = (props) => {
                     component="input"
                     type="text"
                     placeholder="Description"
-                    autoComplete="false"
+                    autocomplete="false"
                     />
                 </div>
                 <div className="form-group">

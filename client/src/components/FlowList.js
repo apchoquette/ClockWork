@@ -59,7 +59,7 @@ class FlowList extends Component {
 
 
         const taskObj = {
-            taskName: form.values.taskName,
+            taskName: null,
             description: form.values.description,
             createdAt: Date.now(),
             requiredBy: form.values.requiredBy,
@@ -76,8 +76,8 @@ class FlowList extends Component {
 
         const stageStyle = {
             backgroundColor: "lightblue",
-            padding: "20px",
-            margin: "5px",
+            padding: "10px",
+            margin: "2px",
             borderRadius: '5px',
             boxShadow: '0px 1px 2px lightgray'
         }
@@ -131,7 +131,7 @@ class FlowList extends Component {
         const customStyles = {
             content : {
                 padding: "0px",
-                width: '50%',
+                width: '25%',
                 borderRadius: "5px",
                 overflow: 'visible',
               top                   : '50%',
