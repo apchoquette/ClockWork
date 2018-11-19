@@ -57,8 +57,9 @@ const TaskList = (props) => {
                             <h6 style={dueDateStyle} class="card-subtitle mb-2">Due {moment(task.requiredBy).fromNow()}</h6>
                             
                             <div className="card-body">
-                                <small class="card-subtitle mb-2 text-muted">Requested {moment(task.createdAt).fromNow()}</small>
+                                
                                 <h5 className="card-title">{task.taskName}</h5>
+                                <small class="card-subtitle mb-2 text-muted">Requested {moment(task.createdAt).fromNow()}</small>
                                 {/* increment button disabled when in last index position*/}
                                 {props.index!==props.flow.length-1 
                                 ? <button className="btn btn-success float-right" onClick={()=>props.changeFlowTaskStatus(props.id,task._id,incrementStage)}><FaArrowRight /></button>
