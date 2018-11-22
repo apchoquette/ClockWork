@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 import TaskList from './TaskList'
-
-import NewTaskForm from './NewTaskForm'
+import FlowSummary from './FlowSummary';
+import NewTaskForm from './NewTaskForm';
 import moment from 'moment';
 import Modal from 'react-modal';
 
@@ -103,7 +103,7 @@ class FlowList extends Component {
                     )
                 }) 
                 :
-                <p></p>
+                <FlowSummary />
             }
                 </div>
             
@@ -148,7 +148,7 @@ class FlowList extends Component {
         return (
             
             <div className="container-fluid h-100 bg-light position-relative" style={containerStyle}>
-            <button type="button" class="btn btn-outline-danger float-right" onClick={()=>this.deleteHandler(this.props.activeFlow._id)}><small>delete flow</small></button>
+            {this.state.flowSelected===true && <button type="button" class="btn btn-outline-danger float-right" onClick={()=>this.deleteHandler(this.props.activeFlow._id)}><small>delete flow</small></button>}
                 {this.state.flowSelected===true ? (<h1>{this.props.activeFlow.name}</h1>) : <p></p>}
                 
                 {this.renderList()}
