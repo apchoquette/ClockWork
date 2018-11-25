@@ -8,11 +8,6 @@ import Task from './Task'
 
 const TaskList = (props) => {
 
-
-    
-
-    console.log('tasklist props', props)
-
     const cardStyle = {
         margin: "5px"
     }
@@ -35,8 +30,6 @@ const TaskList = (props) => {
             )
         }
     }
-
-    
 
     return (
 

@@ -42,7 +42,8 @@ import { Field, reduxForm } from 'redux-form'
     const NewFlowForm = (props) => {
 
     const containerStyle = {
-        padding: '10px'
+        padding: '10px',
+        width: "60%"
     }
     //selectable departments
     const deptOptions = ['Warehouse', 'Customer Service','Sales','Procurement','Inventory Control'];
@@ -50,11 +51,17 @@ import { Field, reduxForm } from 'redux-form'
     const flowOptions = ['Not Started','Backlogged','Blocked','In Progress','Awaiting Response','Complete'];
     const { handleSubmit, reset } = props
 
+    const buttonGroupStyle = {
+        display: 'flex',
+        justifyContent: 'space-around'
+    }
+    
+    
     return (
         <div className="container" style={containerStyle} >
             <Link to="/dashboard">Back</Link>
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
+                <div className="form-group" >
                     <label>Flow Name</label>
                     <Field
                     className="form-control"
@@ -65,7 +72,7 @@ import { Field, reduxForm } from 'redux-form'
                     autoComplete="false"
                     />
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label>Associated Departments</label>
                     <Field
                     name='departments'
@@ -74,7 +81,7 @@ import { Field, reduxForm } from 'redux-form'
                     valueField="value"
                     textField="text"
                     />
-                </div>
+                </div> */}
                 <div className="form-group">
                     <label>Flow Stages</label>
                     <Field
@@ -83,10 +90,11 @@ import { Field, reduxForm } from 'redux-form'
                     data={flowOptions}
                     />
                 </div>
-                <div>
-                    <button type="submit" >Submit</button>
-                    <button type="button" onClick={reset}>Reset Values
+                <div style={buttonGroupStyle}>
+                    <button type="button" className="btn btn-warning" onClick={reset}>
+                    Reset Values
                     </button>
+                    <button type="submit" className="btn btn-success">Submit</button>
                 </div>
 
             </form>

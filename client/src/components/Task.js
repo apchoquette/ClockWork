@@ -8,7 +8,7 @@ import moment from 'moment';
 
 
 const Task = (props) => {
-
+    //styles
     const cardStyle = {
         margin: "5px"
     }
@@ -17,6 +17,11 @@ const Task = (props) => {
         paddingTop: "10px"
     }
 
+    const taskStyle = {
+        display: "flex",
+        justifyContent: "space-between"
+    }
+    //action objects
     const incrementStage = {
         stage: props.flow[props.index+1]
     }
@@ -28,28 +33,30 @@ const Task = (props) => {
 
     const { task } = props;
     return (
-        <div key={task.id}>
-                        <div className="card" style={cardStyle}>
-                            <h6 style={dueDateStyle} class="card-subtitle mb-2">Due {moment(task.requiredBy).fromNow()}</h6>
+        <div key={task.id} style={taskStyle}>
+            <div id="leftArrow" style="decrementStyle">
+            </div>
+            <div className="card" style={cardStyle}>
+                <h6 style={dueDateStyle} class="card-subtitle mb-2">Due {moment(task.requiredBy).fromNow()}</h6>
+                    <div className="card-body">
+                        <h5 className="card-title">{task.description}</h5>
+                            {/* increment button disabled when in last index position*/}
+                            {props.index!==props.flow.length-1 
+                            ? <button className="btn btn-success float-right" onClick={()=>props.changeFlowTaskStatus(props.id,task._id,incrementStage)}><FaArrowRight /></button>
+                            : <button className="btn btn-success float-right disabled"><FaArrowRight /></button>
+                            }
+                            <button className="btn btn-danger" onClick={()=>props.deleteFlowTask(props.id,task._id)}><FaBan /></button>
+                            {/* decrement button disabled when in first index position*/}
+                            {props.index!==0 
+                            ? <button className="btn btn-warning float-left" onClick={()=>props.changeFlowTaskStatus(props.id,task._id,decrementStage)}><FaArrowLeft /></button>
+                            : <button className="btn btn-warning float-left disabled" ><FaArrowLeft /></button>
+                            }
+                            <small class="card-subtitle mb-2 text-muted">Requested {moment(task.createdAt).fromNow()}</small>
+                    </div>        
+                </div>
+            <div id="rightArrow" style="incrementStyle">
                             
-                            <div className="card-body">
-                                
-                                <h5 className="card-title">{task.description}</h5>
-                                
-                                {/* increment button disabled when in last index position*/}
-                                {props.index!==props.flow.length-1 
-                                ? <button className="btn btn-success float-right" onClick={()=>props.changeFlowTaskStatus(props.id,task._id,incrementStage)}><FaArrowRight /></button>
-                                : <button className="btn btn-success float-right disabled"><FaArrowRight /></button>
-                                }
-                                <button className="btn btn-danger" onClick={()=>props.deleteFlowTask(props.id,task._id)}><FaBan /></button>
-                                {/* decrement button disabled when in first index position*/}
-                                {props.index!==0 
-                                ? <button className="btn btn-warning float-left" onClick={()=>props.changeFlowTaskStatus(props.id,task._id,decrementStage)}><FaArrowLeft /></button>
-                                : <button className="btn btn-warning float-left disabled" ><FaArrowLeft /></button>
-                                }
-                                <small class="card-subtitle mb-2 text-muted">Requested {moment(task.createdAt).fromNow()}</small>
-                            </div>        
-                        </div>
+            </div>
                     </div>
     )
 }

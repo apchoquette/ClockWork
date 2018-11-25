@@ -24,8 +24,10 @@ const NewFlowFormPage = ({ form, createFlow,history }) => {
 
     const containerStyle = {
         boxShadow: "1px 1px 2px lightgray",
-        marginTop: "20px",
-        padding: "10px"
+        width: "100%",
+        padding: "10px",
+        position: "relative",
+        top: "150px"
     }
 
     return (

@@ -26,14 +26,14 @@ class FlowList extends Component {
     }
     componentDidMount(props) {
 
-        console.log(typeof this.props.match.params.id)
-
             if(typeof this.props.match.params.id === "string"){
                 this.setState({flowSelected: true})
                 this.props.fetchFlowById(this.props.match.params.id)
                 
                 
-            }else{
+            }
+            
+            else{
                 this.setState({isLoading: false})
                 this.setState({flowSelected: false})
             }
@@ -49,6 +49,7 @@ class FlowList extends Component {
 
     deleteHandler(id) {
         this.props.deleteFlow(id);
+        this.setState({flowSelected: false});
     }
     
     handleSubmit(props) {
@@ -98,7 +99,7 @@ class FlowList extends Component {
                  
                 this.props.activeFlow.stages.map((stage,i)=> {
                     return (
-                        <div key={i} className="col-sm" style={stageStyle}>{stage}<TaskList id={this.props.match.params.id} index={i} openModal={this.openModal} stage={stage} />
+                        <div key={i} className="col-sm" style={stageStyle}><h4>{stage}</h4><TaskList id={this.props.match.params.id} index={i} openModal={this.openModal} stage={stage} />
                     </div>
                     )
                 }) 
@@ -150,11 +151,20 @@ class FlowList extends Component {
               right: "15px"
           }
 
+          const backButtonStyle = {
+              position: 'absolute',
+              top: "15px",
+              left: "15px",
+              textDecoration: "none"
+          }
+
         
         return (
             
             <div className="container-fluid h-100 bg-light position-relative" style={containerStyle}>
-            {this.state.flowSelected===true && <button style={deleteButtonStyle} type="button" class="btn btn-outline-danger" onClick={()=>this.deleteHandler(this.props.activeFlow._id)}><small>delete flow</small></button>}
+            {this.state.flowSelected===true && <button style={deleteButtonStyle} type="button" className="btn btn-danger" onClick={()=>this.deleteHandler(this.props.activeFlow._id)}><small>delete flow</small></button>}
+            {this.state.flowSelected===true && <Link style={backButtonStyle} to="/dashboard">Back</Link>}
+
                 {this.state.flowSelected===true ? (<h1>{this.props.activeFlow.name}</h1>) : <p></p>}
                 
                 {this.renderList()}

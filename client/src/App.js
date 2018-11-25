@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
 
+import About from './components/About';
 import FlowDashboard from './components/FlowDashboard';
 import Header from './components/Header';
 import MainLandingPage from './components/MainLandingPage';
@@ -43,6 +44,7 @@ class App extends Component {
                 />
                 <Route path="/flow/:id" exact component={FlowDashboard}/>
                 <Route path="/newflow" component={NewFlowFormPage} />
+                <Route path="/about" component={About} />
             </div>
         </BrowserRouter>
       </div>

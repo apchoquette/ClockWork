@@ -6,10 +6,6 @@ import Flows from './Flows';
 
 class FlowDashboard extends Component {
 
-    
-    
-    
-    
     render() {
 
         const rowStyle = {
@@ -24,12 +20,6 @@ class FlowDashboard extends Component {
             margin: "10px 0px 10px 0px"
         }
 
-
-        
-
-        
-
-        
         return (
             <div className="container row mh-100 mw-100" style={rowStyle}>
                 
@@ -49,8 +39,4 @@ class FlowDashboard extends Component {
     }
 }
 
-
-
-
-
-export default FlowDashboard
+export default FlowDashboard;

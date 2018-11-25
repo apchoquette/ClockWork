@@ -36,7 +36,7 @@ module.exports = (app) => {
 
         const { id } = req.params;
 
-       console.log(req.body)
+       
 
         const { taskName, description, createdAt, requiredBy, completedAt, stage } = req.body;
 
