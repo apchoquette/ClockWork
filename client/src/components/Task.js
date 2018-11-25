@@ -1,0 +1,64 @@
+import React from 'react';
+import { connect } from 'react-redux';
+
+import * as flowActions from '../redux/actions/flow';
+
+import { FaArrowRight, FaArrowLeft, FaBan } from 'react-icons/fa';
+import moment from 'moment';
+
+
+const Task = (props) => {
+
+    const cardStyle = {
+        margin: "5px"
+    }
+
+    const dueDateStyle = {
+        paddingTop: "10px"
+    }
+
+    const incrementStage = {
+        stage: props.flow[props.index+1]
+    }
+
+    const decrementStage = {
+        stage: props.flow[props.index-1]
+
+    }
+
+    const { task } = props;
+    return (
+        <div key={task.id}>
+                        <div className="card" style={cardStyle}>
+                            <h6 style={dueDateStyle} class="card-subtitle mb-2">Due {moment(task.requiredBy).fromNow()}</h6>
+                            
+                            <div className="card-body">
+                                
+                                <h5 className="card-title">{task.description}</h5>
+                                
+                                {/* increment button disabled when in last index position*/}
+                                {props.index!==props.flow.length-1 
+                                ? <button className="btn btn-success float-right" onClick={()=>props.changeFlowTaskStatus(props.id,task._id,incrementStage)}><FaArrowRight /></button>
+                                : <button className="btn btn-success float-right disabled"><FaArrowRight /></button>
+                                }
+                                <button className="btn btn-danger" onClick={()=>props.deleteFlowTask(props.id,task._id)}><FaBan /></button>
+                                {/* decrement button disabled when in first index position*/}
+                                {props.index!==0 
+                                ? <button className="btn btn-warning float-left" onClick={()=>props.changeFlowTaskStatus(props.id,task._id,decrementStage)}><FaArrowLeft /></button>
+                                : <button className="btn btn-warning float-left disabled" ><FaArrowLeft /></button>
+                                }
+                                <small class="card-subtitle mb-2 text-muted">Requested {moment(task.createdAt).fromNow()}</small>
+                            </div>        
+                        </div>
+                    </div>
+    )
+}
+
+const mapStateToProps = (state,props) => {
+    return ({
+        
+        flow: state.activeFlow.stages
+    })
+}
+
+export default connect(mapStateToProps,flowActions)(Task);

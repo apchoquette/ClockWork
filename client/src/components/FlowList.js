@@ -134,26 +134,33 @@ class FlowList extends Component {
                 width: '25%',
                 borderRadius: "5px",
                 overflow: 'visible',
-              top                   : '50%',
-              left                  : '50%',
-              right                 : 'auto',
-              bottom                : 'auto',
-              marginRight           : '-75%',
-              transform             : 'translate(-50%, -50%)'
+                top: '50%',
+                left: '50%',
+                right: 'auto',
+                bottom: 'auto',
+                marginRight: '-75%',
+                transform: 'translate(-50%, -50%)'
               
             }
+          }
+
+          const deleteButtonStyle = {
+              position: 'absolute',
+              top: "15px",
+              right: "15px"
           }
 
         
         return (
             
             <div className="container-fluid h-100 bg-light position-relative" style={containerStyle}>
-            {this.state.flowSelected===true && <button type="button" class="btn btn-outline-danger float-right" onClick={()=>this.deleteHandler(this.props.activeFlow._id)}><small>delete flow</small></button>}
+            {this.state.flowSelected===true && <button style={deleteButtonStyle} type="button" class="btn btn-outline-danger" onClick={()=>this.deleteHandler(this.props.activeFlow._id)}><small>delete flow</small></button>}
                 {this.state.flowSelected===true ? (<h1>{this.props.activeFlow.name}</h1>) : <p></p>}
                 
                 {this.renderList()}
                 <Modal
                 isOpen={this.state.modalIsOpen}
+                closeTimeoutMS={200}
                 onRequestClose={this.closeModal}
                 contentLabel="New Task"
                 style={customStyles}

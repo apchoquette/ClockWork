@@ -1,9 +1,10 @@
 import React from 'react';
-import * as flowActions from '../redux/actions/flow';
+
 import stageSelector from '../selectors/stageSelector';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { FaArrowRight, FaArrowLeft, FaBan } from 'react-icons/fa';
+
+import Task from './Task'
 
 const TaskList = (props) => {
 
@@ -16,9 +17,7 @@ const TaskList = (props) => {
         margin: "5px"
     }
 
-    const dueDateStyle = {
-        paddingTop: "10px"
-    }
+    
 
     const newTaskButtonStyle = {
         textDecoration: 'blue',
@@ -37,14 +36,7 @@ const TaskList = (props) => {
         }
     }
 
-    const incrementStage = {
-        stage: props.flow[props.index+1]
-    }
-
-    const decrementStage = {
-        stage: props.flow[props.index-1]
-
-    }
+    
 
     return (
 
@@ -52,28 +44,7 @@ const TaskList = (props) => {
             {renderAddTaskLink()}
             {props.task.map((task)=>{
                 return (
-                    <div key={task.id}>
-                        <div className="card" style={cardStyle}>
-                            <h6 style={dueDateStyle} class="card-subtitle mb-2">Due {moment(task.requiredBy).fromNow()}</h6>
-                            
-                            <div className="card-body">
-                                
-                                <h5 className="card-title">{task.taskName}</h5>
-                                <small class="card-subtitle mb-2 text-muted">Requested {moment(task.createdAt).fromNow()}</small>
-                                {/* increment button disabled when in last index position*/}
-                                {props.index!==props.flow.length-1 
-                                ? <button className="btn btn-success float-right" onClick={()=>props.changeFlowTaskStatus(props.id,task._id,incrementStage)}><FaArrowRight /></button>
-                                : <button className="btn btn-success float-right disabled"><FaArrowRight /></button>
-                                }
-                                <button className="btn btn-danger" onClick={()=>props.deleteFlowTask(props.id,task._id)}><FaBan /></button>
-                                {/* decrement button disabled when in first index position*/}
-                                {props.index!==0 
-                                ? <button className="btn btn-warning float-left" onClick={()=>props.changeFlowTaskStatus(props.id,task._id,decrementStage)}><FaArrowLeft /></button>
-                                : <button className="btn btn-warning float-left disabled" ><FaArrowLeft /></button>
-                                }
-                            </div>        
-                        </div>
-                    </div>
+                    <Task task={task} id={props.id} stage={props.stage} index={props.index}/>
                 )
             })}
            
@@ -90,7 +61,7 @@ const mapStateToProps = (state, props) => {
     })
 }
 
-export default connect(mapStateToProps,flowActions)(TaskList);
+export default connect(mapStateToProps)(TaskList);
 
 
 
