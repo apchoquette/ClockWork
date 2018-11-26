@@ -32,11 +32,6 @@ class Flows extends Component {
         const newFlowButton = {
             textDecoration: "none !important"
         }
-
-        const deleteButtonStyle = {
-            right: "20px",
-            top: "20px"
-        }
         
         return (
             <div className="container-fluid text-center h-100" style={leftContainerStyle}>

@@ -17,6 +17,16 @@ module.exports = (app) => {
         res.send(flows);
     })
 
+    app.get('/api/tasks',userLoggedIn, async (req,res) => {
+
+        
+        const tasks = await Flow.find({
+            _user: req.user.id
+        },{task: true})
+
+        res.send(tasks);
+    })
+
     //fetches flow based on URL id
     app.get('/api/flows/:id',userLoggedIn, async (req,res) => {
         

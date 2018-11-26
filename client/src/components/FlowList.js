@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { withRouter } from 'react-router';
 import TaskList from './TaskList'
 import FlowSummary from './FlowSummary';
 import NewTaskForm from './NewTaskForm';
-import moment from 'moment';
+
 import Modal from 'react-modal';
 
 
@@ -29,6 +28,7 @@ class FlowList extends Component {
             if(typeof this.props.match.params.id === "string"){
                 this.setState({flowSelected: true})
                 this.props.fetchFlowById(this.props.match.params.id)
+                
                 
                 
             }
@@ -56,7 +56,7 @@ class FlowList extends Component {
 
         
 
-        const { form,activeFlow,addTaskToFlow,history,match } = this.props
+        const { form,activeFlow,addTaskToFlow,match } = this.props
 
 
         const taskObj = {
@@ -120,15 +120,7 @@ class FlowList extends Component {
             boxShadow: "0 1px 2px lightgray"
         }
 
-        const newButtonStyle = {
-            right: "100px",
-            bottom: "50px",
-            height: "50px",
-            width: "50px",
-            fontSize: "40px",
-            alignContent: "center"
-        }
-
+        
         const customStyles = {
             content : {
                 padding: "0px",

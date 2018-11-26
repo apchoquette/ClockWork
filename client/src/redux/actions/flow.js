@@ -41,3 +41,8 @@ export const deleteFlowTask = (id,taskId) => async dispatch => {
     const res = await axios.delete(`/api/flows/${id}/${taskId}`)
     dispatch({ type: 'FETCH_FLOW_BY_ID', payload: res.data})
 }
+
+export const fetchAllTasks = () => async dispatch => {
+    const res = await axios.get('/api/tasks');
+    dispatch({type: 'FETCH_TASKS', payload: res.data})
+}
