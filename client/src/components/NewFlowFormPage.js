@@ -7,7 +7,11 @@ import { withRouter } from 'react-router';
 
 
 
-const NewFlowFormPage = ({ form, createFlow,history }) => {
+const NewFlowFormPage = ({ form, createFlow,history,flow }) => {
+
+    console.log(flow);
+
+
     
     const submitHandler = async () => {
         const { name, departments, stages } = form.values
@@ -19,7 +23,7 @@ const NewFlowFormPage = ({ form, createFlow,history }) => {
            stages
         })
 
-        history.push('/dashboard');
+        history.push(`/dashboard`);
     }
 
     const containerStyle = {
@@ -40,7 +44,8 @@ const NewFlowFormPage = ({ form, createFlow,history }) => {
 
 const mapStateToProps = (state) => {
     return {
-        form: state.form.flow
+        form: state.form.flow,
+        flow: state.flow
     }
 }
 

@@ -8,10 +8,54 @@ import moment from 'moment';
 
 
 const Task = (props) => {
+
+    const { task } = props;
     //styles
-    const cardStyle = {
-        margin: "5px"
+    const color = () => {
+
+        
+        let countDown = moment(task.requiredBy).diff(moment())/86400000;
+
+        let cardStyle = {
+            
+            backgroundColor: 'white'
+        }
+
+        if ( countDown <= 1 ){
+            
+            cardStyle.backgroundColor = 'red'
+            
+        }else if ( countDown <= 2 ){
+            
+            cardStyle.backgroundColor = 'orange'
+            
+        }else if ( countDown <= 3) {
+            
+            cardStyle.backgroundColor = 'yellow'
+            
+        }else if ( countDown <= 4) {
+            
+            cardStyle.backgroundColor = 'lightgreen'
+            
+        }
+        else if ( countDown > 4) {
+            
+            cardStyle.backgroundColor = 'green'
+            
+        }
+
+        
+        return cardStyle
+
     }
+
+
+
+    
+
+        
+        
+    
 
     const dueDateStyle = {
         paddingTop: "10px"
@@ -31,12 +75,12 @@ const Task = (props) => {
 
     }
 
-    const { task } = props;
+    
     return (
         <div key={task.id} style={taskStyle}>
-            <div id="leftArrow" style="decrementStyle">
+            <div id="leftArrow">
             </div>
-            <div className="card" style={cardStyle}>
+            <div className="card" style={color()}>
                 <h6 style={dueDateStyle} class="card-subtitle mb-2">Due {moment(task.requiredBy).fromNow()}</h6>
                     <div className="card-body">
                         <h5 className="card-title">{task.description}</h5>
@@ -54,7 +98,7 @@ const Task = (props) => {
                             <small class="card-subtitle mb-2 text-muted">Requested {moment(task.createdAt).fromNow()}</small>
                     </div>        
                 </div>
-            <div id="rightArrow" style="incrementStyle">
+            <div id="rightArrow">
                             
             </div>
                     </div>

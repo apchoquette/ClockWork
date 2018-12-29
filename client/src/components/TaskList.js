@@ -23,8 +23,8 @@ const TaskList = (props) => {
         if(props.index===0) {
             return (
                 <div className="card text-white bg-primary mb-3" style={cardStyle}>
-                            <div className="card-body">
-                                <h5 className="card-title"><a style={newTaskButtonStyle}onClick={props.openModal}>Create New Task</a></h5>
+                            <div className="card-body" style={newTaskButtonStyle} onClick={props.openModal}>
+                                <h5 className="card-title"><a >Create New Task</a></h5>
                             </div>        
                         </div> 
             )

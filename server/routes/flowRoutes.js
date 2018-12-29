@@ -141,7 +141,7 @@ module.exports = (app) => {
 
     })
 
-
+    //creates new flow
     app.post('/api/flows', userLoggedIn, async (req,res) => {
         const { name, departments, stages } = req.body;
 
