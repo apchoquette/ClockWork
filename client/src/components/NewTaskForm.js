@@ -1,9 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 import 'react-widgets/dist/css/react-widgets.css'
 import Moment from 'moment';
 import momentLocalizer from 'react-widgets-moment';
-import Multiselect from 'react-widgets/lib/Multiselect';
 import { Field, reduxForm } from 'redux-form'
 import DateTimePicker from 'react-widgets/lib/DateTimePicker';
 
@@ -12,6 +10,8 @@ const NewTaskForm = (props) => {
 
     Moment.locale('en');
     momentLocalizer();
+
+    const { handleSubmit } = props
 
     const newTaskFormStyle = {
         width: "100%",
@@ -22,29 +22,25 @@ const NewTaskForm = (props) => {
         margin: "none"
     }
 
-    const renderCalendarDropdown = ({ input: { onChange, value } } ) => {
+    const renderCalendarDropdown = ({ input: { onChange, value }, meta: { touched, error} } ) => {
         return (
-            <DateTimePicker
-            dropUp 
-            onChange={onChange}
-            time={false}
-            value={!value ? null : new Date(value)}
-            
-            
+            <div>
+                <DateTimePicker
+                dropUp 
+                onChange={onChange}
+                time={false}
+                value={!value ? null : new Date(value)}
             />
+            </div>
+
         )
     }
 
-    const validation = () => {
-        
-    }
+    
 
-
-
-    return (
-
-        <div className="container-fluid" style={newTaskFormStyle}>
-            <form onSubmit={props.handleSubmit}>
+    const renderForm = () => {
+        return (
+            <form onSubmit={handleSubmit}>
                 
                 <div className="form-group">
                     <label>Description</label>
@@ -54,9 +50,9 @@ const NewTaskForm = (props) => {
                     component="input"
                     type="text"
                     placeholder="Description"
-                    autocomplete="false"
-                    />
-                </div>
+                    autoComplete="false"
+                    
+                    />                </div>
                 <div className="form-group">
                     <label>Due Date</label>
                     <Field 
@@ -70,8 +66,28 @@ const NewTaskForm = (props) => {
                 <button className="btn btn-success" type="submit">Add Task</button>
 
             </form>
+        )
+    }
+
+
+
+    return (
+
+        <div className="container-fluid" style={newTaskFormStyle}>
+            {renderForm()}
+            
         </div>
     )
 }
 
-export default reduxForm({form: "task"})(NewTaskForm)
+const validate = (values) => {
+    const errors = {};
+    if(!values.description){
+        errors.description = 'Please enter a description.'
+    }else if(values.requiredBy < Date.now()){
+        errors.requiredBy = 'Please enter a date in the future. '
+    }
+
+}
+
+export default reduxForm({form: "task"},validate)(NewTaskForm)

@@ -4,13 +4,15 @@ import activeFlowReducer from '../reducers/activeFlowReducer';
 import authReducer from '../reducers/authReducer';
 import flowReducer from '../reducers/flowReducer';
 import { reducer as formReducer } from 'redux-form';
+import tasksReducer from '../reducers/tasksReducer';
 
 export default () => {
     const store = createStore(combineReducers({
         auth: authReducer,
         flow: flowReducer,
         form: formReducer,
-        activeFlow: activeFlowReducer
+        activeFlow: activeFlowReducer,
+        tasks: tasksReducer
     }),applyMiddleware(reduxThunk))
 
     return store;

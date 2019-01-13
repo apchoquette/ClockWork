@@ -1,31 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import * as authActions from '../redux/actions/auth';
 
 
 class MainLandingPage extends Component {
 
-    state = {
-        response: ''
-    };
-
-    componentDidMount() {
-        this.callApi()
-        .then(res => this.setState({response: res.server }))
-        .catch(err => console.log(err));
-        
-
-
-    }
-
-    callApi = async () => {
-        const response = await axios.get('/api/test')
-    
-        
-        if(response.status !== 200) throw Error(response.message)
-        
-        return response.data
-
-        }
     
    
     
@@ -36,7 +15,7 @@ class MainLandingPage extends Component {
 
         
         const jumbotronStyle = {
-            height: "60vh",
+            height: "30vh",
             margin: "10rem 0 3rem 0"
         }
 
@@ -48,12 +27,14 @@ class MainLandingPage extends Component {
             <div className="container">
                 
                 <div className="jumbotron jumbotron-fluid" style={jumbotronStyle}>
-                    <div className="container">
+                    <div className="container text-center">
                         <h1 className="display-4">ClockWork</h1>
-                        <p className="lead">A Simple Micro-Project Manager for Teams</p>
+                        <p className="lead">A Simple Task Manager for Work</p>
+                        <a className="btn btn-outline-success" href={`http://localhost:4000/api/auth/google`} role="button">Sign In</a>
                     </div>
                     <hr className="my-4"></hr>
-                    <p>{this.state.response}</p>
+                    
+                    
                     
                 </div>
                 
@@ -64,4 +45,4 @@ class MainLandingPage extends Component {
     
 }
 
-export default MainLandingPage;
+export default connect(null,authActions)(MainLandingPage);

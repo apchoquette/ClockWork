@@ -26,7 +26,7 @@ class Header extends Component {
        
         
         return(
-            this.props.auth && <a className="nav-link"><small>Welcome, {this.props.auth.firstName}</small></a>
+            this.props.auth && <a href="#/" className="nav-link"><small>Welcome, {this.props.auth.firstName}</small></a>
             
         )
     }
@@ -47,17 +47,17 @@ class Header extends Component {
         return (
            
             <nav className="navbar navbar-expand-lg navbar-light sticky-top" style={navbarStyle}>
-                <a className="navbar-brand" ><Link className="navbar-brand" to='/dashboard'>CLOCKWORK</Link></a>
+                <a href='#/' className="navbar-brand" ><Link className="navbar-brand" to='/dashboard'>CLOCKWORK</Link></a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link"><Link className="nav-link" to='/dashboard'>Home</Link></a>
+                            <a href='#/' className="nav-link"><Link className="nav-link" to='/dashboard'>Home</Link></a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link"><Link className="nav-link" to="/about">About</Link></a>
+                            <a href='#/'className="nav-link"><Link className="nav-link" to="/about">About</Link></a>
                         </li>
                         
                     </ul>

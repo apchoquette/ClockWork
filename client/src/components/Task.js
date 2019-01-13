@@ -16,6 +16,8 @@ const Task = (props) => {
         
         let countDown = moment(task.requiredBy).diff(moment())/86400000;
 
+        let margin = '2px'
+
         let cardStyle = {
             
             backgroundColor: 'white'

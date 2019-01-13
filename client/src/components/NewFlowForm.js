@@ -9,21 +9,7 @@ import { Field, reduxForm } from 'redux-form'
     
         
         
-        const renderDeptOptionsMultiSelect = ( { input,data,valueField,textField } ) => {
-    
-            return (
-                <Multiselect {...input}
-                data={data}
-                value={input.value || []}
-                valueField={valueField}
-                textField={textField}
-                onBlur={()=>input.onBlur()}
-                />
-
-            )
-         
-        }
-    
+        
         const renderFlowOptionsMultiSelect = ( { input, data } ) => {
             
             return (
@@ -41,12 +27,14 @@ import { Field, reduxForm } from 'redux-form'
 
     const NewFlowForm = (props) => {
 
+
+
     const containerStyle = {
         padding: '10px',
         width: "60%"
     }
     //selectable departments
-    const deptOptions = ['Warehouse', 'Customer Service','Sales','Procurement','Inventory Control'];
+    // const deptOptions = ['Warehouse', 'Customer Service','Sales','Procurement','Inventory Control'];
     //optional flow stages
     const flowOptions = ['Not Started','Backlogged','Blocked','In Progress','Awaiting Response','Complete'];
     const { handleSubmit, reset } = props
@@ -55,6 +43,11 @@ import { Field, reduxForm } from 'redux-form'
         display: 'flex',
         justifyContent: 'space-around'
     }
+
+    //validation constants
+
+   
+
     
     
     return (
@@ -70,7 +63,11 @@ import { Field, reduxForm } from 'redux-form'
                     type="text"
                     placeholder="Name Your Flow"
                     autoComplete="false"
+                    
+                    
                     />
+                   
+                    
                 </div>
                 {/* <div className="form-group">
                     <label>Associated Departments</label>
@@ -88,6 +85,7 @@ import { Field, reduxForm } from 'redux-form'
                     name='stages'
                     component={renderFlowOptionsMultiSelect}
                     data={flowOptions}
+                    
                     />
                 </div>
                 <div style={buttonGroupStyle}>

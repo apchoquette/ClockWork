@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import FlowList from './FlowList'; 
-import FlowMetrics from './FlowMetrics';
 import Flows from './Flows';
 
 class FlowDashboard extends Component {
@@ -10,10 +8,6 @@ class FlowDashboard extends Component {
 
         const rowStyle = {
             height: "100vh"
-        }
-
-        const navStyle = {
-            boxShadow: "0 1px 2px lightgray"
         }
 
         const mainStyle = {
