@@ -37,7 +37,6 @@ export const changeFlowTaskStatus = (id,taskId,stage) => async dispatch => {
 }
 //deletes specific task
 export const deleteFlowTask = (id,taskId) => async dispatch => {
-    
     const res = await axios.delete(`/api/flows/${id}/${taskId}`)
     dispatch({ type: 'FETCH_FLOW_BY_ID', payload: res.data})
 }

@@ -9,17 +9,66 @@ class FlowSummary extends Component {
         this.props.fetchAllTasks();
     }
 
+    
+
     render() {
+
+
+        const rowStyle = {
+            height: "250px",
+            padding: "10px"
+        }
+
+        const cardStyle = { 
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center"
+        }
+
+        
+
         return (
-            <div className="container-fluid">
-                <div id="activeTasks#">
-                {this.props.flow && <h4>You currently have {this.props.flow.length} active {this.props.flow.length===1 ? "flow," : "flows,"} # tasks due today, # tasks due this week and # tasks past due.</h4>}
+            <div className="container">
+
+                <div className="row" style = { rowStyle } >
+                    <div className="col ">
+                        <div className="card" style = { cardStyle } >
+                            
+                            <h6> {this.props.flow.length} active {this.props.flow.length===1 ? "flow," : "flows"} </h6>
+                            
+                        </div>
+                    
+                    </div>
+                    <div className="col">
+                        <div className="card" style = { cardStyle } >
+                            
+                            <h6># tasks due today</h6>
+                            
+                        </div>
+                    
+                    </div>
                 </div>
-                {/* <div id="calendar">
-                    <Calendar />
-                </div> */}
-            
-            
+                <div className="row" style = { rowStyle }>
+                    <div className="col">
+                        <div className="card" style = { cardStyle } >
+                            
+                            <h6># tasks due this week</h6>
+                            
+                        </div>
+                    
+                    </div>
+                    <div className="col">
+                        <div className="card" style = { cardStyle } >
+                            
+                            <h6># tasks past due.</h6>
+                            
+                        </div>
+                    
+                    </div>
+                </div>
+
             </div>
         )
 

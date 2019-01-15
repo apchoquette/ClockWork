@@ -20,9 +20,10 @@ class Flows extends Component {
 
         const flowStyle = {
         
-            top: "100px",
-            position: "fixed", 
-            width: "200px"
+        
+        position: "sticky",
+        top: '50px',
+        width: "225px"
         }
     
         const leftContainerStyle = {

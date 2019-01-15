@@ -40,13 +40,14 @@ class Header extends Component {
         const navbarStyle = {
             boxShadow: "0 1px 2px lightgray",
             zIndex: "102",
-            backgroundColor: "lightblue"
+            backgroundColor: "lightblue",
+            height: "10%"
         }
 
         
         return (
            
-            <nav className="navbar navbar-expand-lg navbar-light sticky-top" style={navbarStyle}>
+            <nav className="navbar navbar-expand-lg navbar-light" style={navbarStyle}>
                 <a href='#/' className="navbar-brand" ><Link className="navbar-brand" to='/dashboard'>CLOCKWORK</Link></a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

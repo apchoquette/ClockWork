@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  
+}
+
+#root {
+  background-color: rgb(240, 240, 240)
 }
 
 .ReactModal__Overlay {

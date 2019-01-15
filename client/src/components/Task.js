@@ -16,11 +16,12 @@ const Task = (props) => {
         
         let countDown = moment(task.requiredBy).diff(moment())/86400000;
 
-        let margin = '2px'
+        
 
         let cardStyle = {
             
-            backgroundColor: 'white'
+            backgroundColor: 'white',
+            
         }
 
         if ( countDown <= 1 ){
@@ -51,21 +52,13 @@ const Task = (props) => {
 
     }
 
-
-
-    
-
-        
-        
-    
-
     const dueDateStyle = {
         paddingTop: "10px"
     }
 
     const taskStyle = {
         display: "flex",
-        justifyContent: "space-between"
+        justifyContent: "center"
     }
     //action objects
     const incrementStage = {
@@ -77,20 +70,27 @@ const Task = (props) => {
 
     }
 
+    const rightArrowStyle = {
+        backgroundColor: "lightgreen"
+    }
+
     
     return (
         <div key={task.id} style={taskStyle}>
             <div id="leftArrow">
+            LEFT
             </div>
             <div className="card" style={color()}>
-                <h6 style={dueDateStyle} class="card-subtitle mb-2">Due {moment(task.requiredBy).fromNow()}</h6>
+                <h6 style={dueDateStyle} className="card-subtitle mb-2">Due {moment(task.requiredBy).fromNow()}</h6>
                     <div className="card-body">
                         <h5 className="card-title">{task.description}</h5>
                             {/* increment button disabled when in last index position*/}
+                            <div>
                             {props.index!==props.flow.length-1 
                             ? <button className="btn btn-success float-right" onClick={()=>props.changeFlowTaskStatus(props.id,task._id,incrementStage)}><FaArrowRight /></button>
                             : <button className="btn btn-success float-right disabled"><FaArrowRight /></button>
                             }
+                            </div>
                             <button className="btn btn-danger" onClick={()=>props.deleteFlowTask(props.id,task._id)}><FaBan /></button>
                             {/* decrement button disabled when in first index position*/}
                             {props.index!==0 
@@ -100,8 +100,8 @@ const Task = (props) => {
                             <small class="card-subtitle mb-2 text-muted">Requested {moment(task.createdAt).fromNow()}</small>
                     </div>        
                 </div>
-            <div id="rightArrow">
-                            
+            <div id="rightArrow" style = {rightArrowStyle}>
+            <i class="fas fa-angle-right" style={{height: "60px"}}></i>
             </div>
                     </div>
     )

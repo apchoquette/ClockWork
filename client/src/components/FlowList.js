@@ -137,7 +137,7 @@ class FlowList extends Component {
             }
           }
 
-          const deleteButtonStyle = {
+          const editButtonStyle = {
               position: 'absolute',
               top: "15px",
               right: "15px"
@@ -154,7 +154,8 @@ class FlowList extends Component {
         return (
             
             <div className="container-fluid h-100 bg-light position-relative" style={containerStyle}>
-            {this.state.flowSelected===true && <button style={deleteButtonStyle} type="button" className="btn btn-danger" onClick={()=>this.deleteHandler(this.props.activeFlow._id)}><small>delete flow</small></button>}
+            {this.state.flowSelected === true && <button className = 'btn' style={editButtonStyle} ><i class="fas fa-cog"></i></button>}
+            {/* {this.state.flowSelected===true && <button style={deleteButtonStyle} type="button" className="btn btn-danger" onClick={()=>this.deleteHandler(this.props.activeFlow._id)}><small>delete flow</small></button>} */}
             {this.state.flowSelected===true && <Link style={backButtonStyle} to="/dashboard">Back</Link>}
 
                 {this.state.flowSelected===true ? (<h1>{this.props.activeFlow.name}</h1>) : <p></p>}

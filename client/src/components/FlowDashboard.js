@@ -7,17 +7,18 @@ class FlowDashboard extends Component {
     render() {
 
         const rowStyle = {
-            height: "100vh"
+            height: "80%"
         }
 
         const mainStyle = {
-            margin: "10px 0px 10px 0px"
+            margin: "10px 0px 10px 0px",
+            height: "80%"
         }
 
         return (
             <div className="container row mh-100 mw-100" style={rowStyle}>
                 
-                <div className="col-2 mh-100 bg-white">
+                <div className="col-2 mh-100">
                     <Flows />
 
                 </div>
