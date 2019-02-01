@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class flowDetails extends Component {
+class FlowDetails extends Component {
 
     render(){
         return (
@@ -12,4 +12,4 @@ class flowDetails extends Component {
     }
 }
 
-export default flowDetails;
+export default FlowDetails;

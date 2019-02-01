@@ -4,7 +4,7 @@ import Moment from 'moment';
 import momentLocalizer from 'react-widgets-moment';
 import { Field, reduxForm } from 'redux-form'
 import DateTimePicker from 'react-widgets/lib/DateTimePicker';
-
+import moment from 'moment';
 
 const NewTaskForm = (props) => {
 
@@ -29,7 +29,7 @@ const NewTaskForm = (props) => {
                 dropUp 
                 onChange={onChange}
                 time={false}
-                value={!value ? null : new Date(value)}
+                value={!value ? null : moment(value)}
             />
             </div>
 

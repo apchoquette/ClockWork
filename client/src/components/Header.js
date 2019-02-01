@@ -15,7 +15,7 @@ class Header extends Component {
             default:
            
                 return (
-                    <a className="btn btn-outline-danger float-right" href='http://localhost:4000/api/logout' role="button">Sign Out</a>
+                    <a className="btn btn-light float-right" href='http://localhost:4000/api/logout' role="button">Sign Out</a>
                     )
         }
         
@@ -26,7 +26,7 @@ class Header extends Component {
        
         
         return(
-            this.props.auth && <a href="#/" className="nav-link"><small>Welcome, {this.props.auth.firstName}</small></a>
+            this.props.auth && <a href="#/" className="nav-link"><small>Welcome, {this.props.auth.firstName.split(' ')[0]}</small></a>
             
         )
     }

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Flow = mongoose.model('flows');
 const userLoggedIn = require('../middlewares/userLoggedIn');
 const Path = require('path-parser');
+const moment = require('moment')
 
 
 
@@ -38,6 +39,36 @@ module.exports = (app) => {
 
         res.send(flow);
     })
+
+    //gets due today tasks
+    app.get('/api/tasks/today', async (req,res) => {
+
+        const today = await Flow.find( { _user: req.user,
+             task: { requiredBy: { $eq: new Date(moment()) }}
+        }
+        );
+
+        res.send(today)
+
+    })
+
+    //gets due this week tasks
+
+    // app.get('/api/tasks/thisweek', userLoggedIn, async (req,res) => {
+
+    //     const today = await Flow.count
+
+    // })
+
+    //gets past due tasks
+
+    // app.get('/api/tasks/pastdue', userLoggedIn, async (req,res) => {
+
+    //     const today = await Flow.find({ task: {
+    //         requiredBy: { $eq: new}
+    //     }})
+
+    // })
 
 
     //creates a new task within the selected flow.

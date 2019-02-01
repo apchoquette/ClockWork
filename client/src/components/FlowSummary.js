@@ -32,6 +32,8 @@ class FlowSummary extends Component {
         return (
             <div className="container">
 
+            <h3>{this.props.auth && this.props.auth.firstName.split(' ')[0]}'s Dashboard </h3>
+
                 <div className="row" style = { rowStyle } >
                     <div className="col ">
                         <div className="card" style = { cardStyle } >
@@ -79,7 +81,8 @@ class FlowSummary extends Component {
 const mapStateToProps = (state) => {
     return {
         flow: state.flow,
-        tasks: state.tasks
+        tasks: state.tasks,
+        auth: state.auth
 
     }
     

@@ -70,15 +70,20 @@ const Task = (props) => {
 
     }
 
-    const rightArrowStyle = {
-        backgroundColor: "lightgreen"
+    const arrowDivStyle = {
+        display: "flex",
+        width: "10%"
+    }
+
+    const arrowStyle = {
+        fontSize: '70px'
     }
 
     
     return (
         <div key={task.id} style={taskStyle}>
-            <div id="leftArrow">
-            LEFT
+            <div id="leftArrow" style = { arrowDivStyle }>
+            <i class="fas fa-angle-left align-middle" style={ arrowStyle }></i>
             </div>
             <div className="card" style={color()}>
                 <h6 style={dueDateStyle} className="card-subtitle mb-2">Due {moment(task.requiredBy).fromNow()}</h6>
@@ -100,8 +105,8 @@ const Task = (props) => {
                             <small class="card-subtitle mb-2 text-muted">Requested {moment(task.createdAt).fromNow()}</small>
                     </div>        
                 </div>
-            <div id="rightArrow" style = {rightArrowStyle}>
-            <i class="fas fa-angle-right" style={{height: "60px"}}></i>
+            <div id="rightArrow" style = {arrowDivStyle}>
+            <i class="fas fa-angle-right align-middle" style={ arrowStyle }></i>
             </div>
                     </div>
     )
